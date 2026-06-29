@@ -1,12 +1,16 @@
-# NTBKRNL: Monolithic 64-Bit Ultra-Dense UEFI Native Kernel
+# NTBKRNL: Monolithic 64-Bit UEFI Kernel
 
-NTBKRNL (New Technology Boot Kernel) is a high-density, native 64-bit operating system kernel built from scratch for physical x86_64 hardware platforms running on modern UEFI environments. Designed with a strict **Header-Only** architectural philosophy, NTBKRNL eliminates compilation bloat and linkage overhead, executing directly through the firmware's Long Mode initialization with zero legacy dependencies.
+NTBKRNL (New Technology Boot Kernel) is a minimalist, native 64-bit operating system kernel developed for x86_64 hardware platforms running on modern UEFI environments. 
 
-## 🚀 Key Architectural Advantages
+Following a strict **Header-Only** design architecture, the project eliminates compilation bloat and external linkage overhead. This allows the system to initialize directly through the firmware's Long Mode execution environment with zero legacy dependencies.
 
-* **High-Density Design:** Packs a VESA VBE Linear Framebuffer graphics driver, physical E820 RAM memory mapping, a cache-friendly task manager, and a hardware-level Blue Screen of Death (BSOD) diagnostic engine into less than 400 lines of pure C code.
-* **Cache-Friendly Architecture:** All core execution structures are strictly aligned to the CPU's 64-byte L1/L2 cache lines. By enforcing `static inline` execution layouts, it completely avoids stack fragmentation and eliminates Call Stack Overhead.
-* **Pure Direct Hardware Interaction:** Bypasses bloated OS layers. Implements an abstract-yet-direct peripheral communication model: expand with a commercial asynchronous `INTK` (Interrupt Kernel) or interface directly with the physical motherboard buses using low-level, zero-latency raw reads and writes.
-* **Linear Ramdisk Delivery:** Rejects flawed archive headers like ZIP (which waste CPU cycles scanning backwards for central directories). NTBKRNL champions flat, linear data mapping for instantaneous file indexing.
+## 🚀 Key Technical Features
 
-*Architecturally streamlined to achieve what multi-million line legacy kernels can no longer provide: absolute control over system hardware with maximum execution density.*
+* **High-Density Implementation:** Integrates a VESA VBE Linear Framebuffer graphics driver, physical E820 RAM memory mapping, a basic task manager, and a hardware-level diagnostic error screen into a single lightweight codebase.
+* **Cache Alignment Optimization:** All core execution structures match the CPU's 64-byte L1/L2 cache lines. By enforcing `static inline` execution layouts, the kernel reduces call stack overhead and controls stack fragmentation.
+* **Direct I/O Hardware Interaction:** Bypasses traditional OS abstraction layers. The system implements a direct peripheral communication model: it can handle hardware events asynchronously via an `INTK` (Interrupt Kernel) entry point, or perform raw read/write operations directly on the hardware buses with minimal latency.
+* **Linear Ramdisk Processing:** Rejects complex archive headers like ZIP that require scanning backward for central directories. NTBKRNL utilizes flat, linear memory data mapping for fast, predictable sequential file indexing.
+
+## ⚖️ License
+See NTBPL... 
+This project is licensed under the **NTB Public License (NTBPL)**. You are free to copy, modify, distribute, or commercialize this software.RE, ITS USE, OR ANY INAPPROPRIATE OPERATIONS PERFORMED WITH THE CODE.
